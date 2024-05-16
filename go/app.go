@@ -2,6 +2,8 @@ package main
 
 import (
 	gql "backend/go/graphql"
+	gqlDB "backend/go/graphql/repository"
+
 	// "backend/go/rest"
 	"log"
 	"net/http"
@@ -30,12 +32,12 @@ func main() {
 		log.Fatal("Error loading .env file")
 	}
 
-	gql.InitDB()
-	blogType := gql.CreateBlogType()
+	gqlDB.InitDB()
+	gql.InitGQLFields()
 
 	schema, err := graphql.NewSchema(
 		graphql.SchemaConfig{
-			Query: gql.QueryType(blogType),
+			Query: gql.QueryType(),
 		},
 	)
 	if err != nil {

@@ -15,3 +15,14 @@ func QueryType() *graphql.Object {
 		},
 	)
 }
+
+func MutationType() *graphql.Object {
+	return graphql.NewObject(
+		graphql.ObjectConfig{
+			Name: "Mutation",
+			Fields: graphql.Fields{
+				"create_blog": CreateBlogField,
+			},
+		},
+	)
+}

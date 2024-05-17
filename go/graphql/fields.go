@@ -9,6 +9,7 @@ import (
 
 var GetBlogListField *graphql.Field
 var GetBlogByIDField *graphql.Field
+var CreateBlogField *graphql.Field
 
 func InitGQLFields() {
 	GetBlogListField = &graphql.Field{
@@ -35,6 +36,22 @@ func InitGQLFields() {
 		},
 		Resolve: func(p graphql.ResolveParams) (interface{}, error) {
 			return handler.GetBlogByID(p)
+		},
+	}
+
+	CreateBlogField = &graphql.Field{
+		Type:        entity.GetBlogType(),
+		Description: "Create a new Blog",
+		Args: graphql.FieldConfigArgument{
+			"title": &graphql.ArgumentConfig{
+				Type: graphql.NewNonNull(graphql.String),
+			},
+			"content": &graphql.ArgumentConfig{
+				Type: graphql.NewNonNull(graphql.String),
+			},
+		},
+		Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+			return handler.CreateBlog(p)
 		},
 	}
 }

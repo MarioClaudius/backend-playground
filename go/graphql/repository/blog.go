@@ -44,3 +44,17 @@ func GetBlogByID(blogID int64) (*entity.Blog, error) {
 	}
 	return &blog, nil
 }
+
+func InsertBlog(model entity.Blog) (*entity.Blog, error) {
+	query := "INSERT INTO blogs (`title`, `content`) VALUES (?,?)"
+	result, err := db.Exec(query, model.Title, model.Content)
+	if err != nil {
+		return nil, err
+	}
+	id, err := result.LastInsertId()
+	if err != nil {
+		return nil, err
+	}
+	model.ID = id
+	return &model, nil
+}

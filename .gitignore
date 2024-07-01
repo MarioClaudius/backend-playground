@@ -1,2 +1,15 @@
 .vscode
 .env
+.idea
+
+# for backend java spring
+java-spring/learn-springboot-restful-api/src/main/resources/application.properties
+java-spring/learn-springboot-restful-api/.idea
+java-spring/learn-springboot-restful-api/*.iws
+java-spring/learn-springboot-restful-api/*.iml
+java-spring/learn-springboot-restful-api/*.ipr
+java-spring/learn-springboot-restful-api/HELP.md
+java-spring/learn-springboot-restful-api/target/
+java-spring/learn-springboot-restful-api/!.mvn/wrapper/maven-wrapper.jar
+java-spring/learn-springboot-restful-api/!**/src/main/**/target/
+java-spring/learn-springboot-restful-api/!**/src/test/**/target/

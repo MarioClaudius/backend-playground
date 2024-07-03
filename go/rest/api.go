@@ -26,6 +26,8 @@ func (s *APIServer) Run() {
 	router := httprouter.New()
 
 	router.GET("/blogs/:id", s.handler.GetBlogByID)
+	router.GET("/blogs", s.handler.GetBlogList)
+	router.POST("/blogs", s.handler.AddBlog)
 
 	log.Fatal(http.ListenAndServe(s.listenAddr, router))
 }

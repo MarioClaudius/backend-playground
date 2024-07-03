@@ -28,16 +28,8 @@ func main() {
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
-	// server := http.Server{
-	// 	Addr:    "localhost:8080",
-	// 	Handler: rest.GetHandler(),
-	// }
 
-	// err := server.ListenAndServe()
-	// if err != nil {
-	// 	log.Fatalln(err)
-	// 	panic(err)
-	// }
+	// *************** REST *****************
 	dataSourceName := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", os.Getenv("MYSQL_USER"), os.Getenv("MYSQL_PASSWORD"), os.Getenv("MYSQL_HOST"), os.Getenv("MYSQL_PORT"), os.Getenv("MYSQL_DBNAME"))
 	db, err := sql.Open("mysql", dataSourceName)
 	if err != nil {
@@ -60,8 +52,6 @@ func main() {
 
 	server := rest.NewAPIServer(":8081", h)
 	server.Run()
-
-	// log.Fatal(http.ListenAndServe(":8080", router))
 
 	// ********************* GraphQL ***********************
 	// gqlDB.InitDB()
